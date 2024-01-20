@@ -19,6 +19,7 @@ import { MatTooltipModule, MAT_TOOLTIP_DEFAULT_OPTIONS } from '@angular/material
 import { PersonsComponent } from './components/persons/persons.component';
 import { CarsComponent } from './components/cars/cars.component';
 import { PersonModalComponent } from './components/persons/person-modal/person-modal.component';
+import { CarModalComponent } from './components/cars/car-modal/car-modal.component';
 
 @NgModule({
   declarations: [
@@ -29,7 +30,8 @@ import { PersonModalComponent } from './components/persons/person-modal/person-m
     ConfirmDialogComponent,
     PersonsComponent,
     CarsComponent,
-    PersonModalComponent
+    PersonModalComponent,
+    CarModalComponent
   ],
   imports: [
     BrowserModule,

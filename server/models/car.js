@@ -1,18 +1,22 @@
 module.exports = (sequelize, DataType) => {
-    let model = sequelize.define('Persons', {
-      last_name: {
+    let model = sequelize.define('Cars', {
+      brand_name: {
         type: DataType.TEXT,
         allowNull: false
       },
-      first_name: {
+      model_name: {
         type: DataType.TEXT,
         allowNull: false
       },
-      cnp: {
-        type: DataType.TEXT,
+      year: {
+        type: DataType.INTEGER,
         allowNull: false
       },
-      age: {
+      cilindrical_capacity: {
+        type: DataType.INTEGER,
+        allowNull: false
+      },
+      tax: {
         type: DataType.INTEGER,
         allowNull: false
       }

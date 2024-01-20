@@ -1,0 +1,62 @@
+<div class="modal-header">
+    <h4 class="modal-title">{{car_id ? 'Modificare' : 'Adăugare'}} mașină</h4>
+</div>
+
+<div class="modal-body">
+    <div class="row">
+        <label class="col-4 control-label">Denumire marcă</label>
+        <div class="col-6">
+            <input required #brandName="ngModel" [(ngModel)]="modal.brand_name" [class.is-invalid]="brandName.invalid && brandName.touched"  
+            class="form-control" placeholder="Marcă..." maxlength="255" />
+            <small class="text-danger" [class.d-none]="brandName.valid || brandName.untouched">Câmpul "Denumire marcă" este obligatoriu</small>
+        </div>
+    </div>
+
+    <div class="row">
+        <label class="col-4 control-label">Denumire model</label>
+        <div class="col-6">
+            <input required #modelName="ngModel" [(ngModel)]="modal.model_name"  [class.is-invalid]="modelName.invalid && modelName.touched" 
+            class="form-control" placeholder="Model..." maxlength="255" />
+            <small class="text-danger" [class.d-none]="modelName.valid || modelName.untouched">Câmpul "Denumire model" este obligatoriu</small>
+        </div>
+    </div>
+
+    <div class="row">
+        <label class="col-4 control-label">Anul fabricației</label>
+        <div class="col-6">
+            <input type="number" required #year="ngModel" pattern="^\d{4}$" [(ngModel)]="modal.year" [class.is-invalid]="year.invalid && year.touched" 
+            class="form-control" placeholder="Anul fabricației..." maxlength="4" />
+            <div *ngIf="year.errors && (year.valid || year.touched)">
+                <small class="text-danger" *ngIf="year.errors?.['required']">Câmpul "Anul fabricației" este obligatoriu</small>
+                <small class="text-danger" *ngIf="year.errors?.['pattern']">Câmpul "Anul fabricației" trebuie să conțină 4 cifre</small>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <label class="col-4 control-label">Capacitate cilindrică</label>
+        <div class="col-6">
+            <input type="number" required #cc="ngModel" pattern="^\d{4}$" [(ngModel)]="modal.cilindrical_capacity" 
+            [class.is-invalid]="cc.invalid && cc.touched" class="form-control" placeholder="Capacitate cilindrică..." maxlength="4" />
+            <div *ngIf="cc.errors && (cc.valid || cc.touched)">
+                <small class="text-danger" *ngIf="cc.errors?.['required']">Câmpul "Capacitate cilindrică" este obligatoriu</small>
+                <small class="text-danger" *ngIf="cc.errors?.['pattern']">Câmpul "Capacitate cilindrică" trebuie să conțină 4 cifre</small>
+            </div>
+        </div>
+    </div>
+    
+    <div class="row">
+        <label class="col-4 control-label">Taxă de impozit</label>
+        <div class="col-6">
+            <input type="number" required #tax="ngModel" [(ngModel)]="modal.tax"  [class.is-invalid]="tax.invalid && tax.touched" 
+            class="form-control" placeholder="Taxă de impozit..." maxlength="4" />
+            <small class="text-danger" [class.d-none]="tax.valid || tax.untouched">Câmpul "Taxă de impozit" este obligatoriu</small>
+        </div>
+    </div>
+
+</div>
+
+<div class="modal-footer">
+    <button type="button" class="btn btn-outline-dark" (click)="activeModal.dismiss()">Renunță</button>
+    <button type="submit" class="btn btn-success" (click)="save()">Salvează</button>
+</div>

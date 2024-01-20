@@ -9,6 +9,8 @@ module.exports = app => {
   app.use('/api/information', require('./routes/information')(app));
 
   app.use('/api/persons', require('./routes/person')(app));
+
+  app.use('/api/cars', require('./routes/car')(app));
  
   app.route('*/:url(api|auth|components|app|bower_components|assets)/*').get(errors[404]);
 
