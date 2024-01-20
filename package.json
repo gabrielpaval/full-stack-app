@@ -10,7 +10,7 @@
     "dev": "nodemon server/app.js",
     "preinstall": "npm i -g @angular/cli"
   },
-  "author": "Virvara Alexandru",
+  "author": "Paval Gabriel",
   "license": "ISC",
   "engines": {
     "node": "18.12.0",
