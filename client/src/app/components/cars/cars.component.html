@@ -43,13 +43,13 @@
                 </button>
                 <table class="table table-hover table-striped table-bordered font-14 p-0">
                     <tbody>
-                        <tr *ngFor="let c of cars.slice(0, limit)" (dblclick)="addEdit(c.id)" class="cursor-pointer">
-                            <td width="60px" class="text-center">{{c.id}}</td>
+                        <tr *ngFor="let c of cars.slice(0, limit);index as i" (dblclick)="addEdit(c.id)" class="cursor-pointer">
+                            <td width="60px" class="text-center">{{i+1}}</td>
                             <td width="383px">{{c.brand_name}}</td>
                             <td width="383px">{{c.model_name}}</td>
                             <td width="100px">{{c.year}}</td>
                             <td width="100px">{{c.cilindrical_capacity}}</td>
-                            <td width="100px">{{c.tax}}</td>
+                            <td width="100px">{{c.tax}} RON</td>
                             <td width="30px" (click)="addEdit(c.id)" class="text-center" matTooltip="Modificare" malToolTipPosition="left">
                                 <fa-icon class="text-primary" [icon]="faEdit"></fa-icon>
                             </td>

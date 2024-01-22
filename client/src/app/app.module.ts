@@ -31,7 +31,7 @@ import { CarModalComponent } from './components/cars/car-modal/car-modal.compone
     PersonsComponent,
     CarsComponent,
     PersonModalComponent,
-    CarModalComponent
+    CarModalComponent,
   ],
   imports: [
     BrowserModule,

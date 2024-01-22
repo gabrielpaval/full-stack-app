@@ -23,7 +23,7 @@
         <label class="col-2 control-label">CNP</label>
         <div class="col-4">
             <input required #cnp="ngModel" pattern="^\d{13}$" [(ngModel)]="modal.cnp" [class.is-invalid]="cnp.invalid && cnp.touched" 
-            class="form-control" placeholder="CNP..." maxlength="13" (onmouserelease)='calculateAge(cnp.value)'/>
+            class="form-control" placeholder="CNP..." maxlength="13"/>
             <div *ngIf="cnp.errors && (cnp.valid || cnp.touched)">
                 <small class="text-danger" *ngIf="cnp.errors?.['required']">Câmpul "CNP" este obligatoriu</small>
                 <small class="text-danger" *ngIf="cnp.errors?.['pattern']">Câmpul "CNP" trebuie să conțină 13 cifre</small>
@@ -32,9 +32,24 @@
 
         <label class="col-1 control-label">Vârstă</label>
         <div class="col-4">
-            <input type="number" required #age="ngModel" value="{{age}}" [(ngModel)]="modal.age" 
+            <input type="number" required #age="ngModel" [value]="calculateAge(modal.cnp)" [(ngModel)]="modal.age" 
             [class.is-invalid]="age.invalid && age.touched" class="form-control" placeholder="Vârsta..." maxlength="3" />
             <small class="text-danger" [class.d-none]="age.valid || age.untouched">Câmpul "Vârstă" este obligatoriu</small>
+        </div>
+    </div>
+
+    <div class='row'>
+        <label class='col-2 control-label'>Mașini deținute</label>
+        <div class='col-9'>
+            <ng-select [multiple]='true' [items]='cars' [(ngModel)]='modal.car_list'>
+                <ng-template ng-label-tmp let-item='item' let-clear='clear'>
+                    <span class='ng-value-icon' (click)='clear(item)'>×</span>
+                    {{item.brand_name}} {{item.model_name}} ({{item.year}}) ({{item.cilindrical_capacity}}) ({{item.tax}})
+                </ng-template>
+                <ng-template ng-option-tmp let-item='item'>
+                    {{item.brand_name}} {{item.model_name}} ({{item.year}}) ({{item.cilindrical_capacity}}) ({{item.tax}})
+                </ng-template>   
+            </ng-select>
         </div>
     </div>
 

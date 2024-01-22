@@ -7,6 +7,7 @@ import { ToastrService } from 'ngx-toastr';
 import { CarModalComponent } from './car-modal/car-modal.component';
 import { SCROLL_TOP } from 'src/app/utils/utils-table';
 import { ConfirmDialogComponent } from '../confirm-dialog/confirm-dialog.component';
+import { Car } from 'src/app/interface/car';
 
 @Component({
   selector: 'app-cars',
@@ -15,14 +16,16 @@ import { ConfirmDialogComponent } from '../confirm-dialog/confirm-dialog.compone
 })
 export class CarsComponent implements OnInit {
   faPlus = faPlus;
-  cars: any = [];
+  cars: Car[] = [];
   showBackTop: string = '';
   limit: number = 70;
   faChevronUp = faChevronUp;
   faEdit = faEdit;
   faTrashAlt = faTrashAlt;
 
-  constructor(private _modal: NgbModal, private _spinner: NgxSpinnerService, private toastr: ToastrService) { }
+  constructor(private _modal: NgbModal, 
+              private _spinner: NgxSpinnerService, 
+              private toastr: ToastrService) { }
 
   ngOnInit(): void {
     this.loadData();

@@ -48,7 +48,7 @@
     <div class="row">
         <label class="col-4 control-label">Taxă de impozit</label>
         <div class="col-6">
-            <input type="number" required #tax="ngModel" [(ngModel)]="modal.tax"  [class.is-invalid]="tax.invalid && tax.touched" 
+            <input type="number" required #tax="ngModel" [value]="calculateTax(modal.cilindrical_capacity)" [(ngModel)]="modal.tax"  [class.is-invalid]="tax.invalid && tax.touched" 
             class="form-control" placeholder="Taxă de impozit..." maxlength="4" />
             <small class="text-danger" [class.d-none]="tax.valid || tax.untouched">Câmpul "Taxă de impozit" este obligatoriu</small>
         </div>

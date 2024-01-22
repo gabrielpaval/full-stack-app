@@ -21,9 +21,11 @@
                         <th>Prenume</th>
                         <th width="120px">CNP</th>
                         <th width="60px">Vârsta</th>
+                        <th width='200px'>Mașini deținute</th>
                         <th rowspan='2' width='70px'></th>
                     </tr>
                     <tr>
+                        <th><input class='form-control input-xs' placeholder='Căutare...'></th>
                         <th><input class='form-control input-xs' placeholder='Căutare...'></th>
                         <th><input class='form-control input-xs' placeholder='Căutare...'></th>
                         <th><input class='form-control input-xs' placeholder='Căutare...'></th>
@@ -40,12 +42,21 @@
                 </button>
                 <table class="table table-hover table-striped table-bordered font-14 p-0">
                     <tbody>
-                        <tr *ngFor="let p of persons.slice(0, limit)" (dblclick)="addEdit(p.id)" class="cursor-pointer">
-                            <td width="60px" class="text-center">{{p.id}}</td>
-                            <td width="443">{{p.last_name}}</td>
-                            <td width="443">{{p.first_name}}</td>
+                        <tr *ngFor="let p of persons.slice(0, limit);index as i" (dblclick)="addEdit(p.id)" class="cursor-pointer">
+                            <td width="60px" class="text-center">{{i+1}}</td>
+                            <td width="343px">{{p.last_name}}</td>
+                            <td width="343px">{{p.first_name}}</td>
                             <td width="120px">{{p.cnp}}</td>
                             <td width="60px">{{p.age}}</td>
+                            <td width='200px' class='text-center'>
+                                <ul *ngIf='p.car_list[0].id !== null'>
+                                    <li *ngFor='let c of p.car_list' class='border'>
+                                        {{c.brand_name}} {{c.model_name}} {{c.year}}<br />
+                                        Capacitate cilindrică: {{c.cilindrical_capacity}}<br />
+                                        Taxă de impozit: {{c.tax}}
+                                    </li>
+                                </ul>
+                            </td>
                             <td width="30px" (click)="addEdit(p.id)" class="text-center" matTooltip="Modificare" malToolTipPosition="left">
                                 <fa-icon class="text-primary" [icon]="faEdit"></fa-icon>
                             </td>

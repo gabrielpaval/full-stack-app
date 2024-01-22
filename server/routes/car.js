@@ -5,7 +5,7 @@ module.exports = app => {
     const router          = express.Router();
   
     router.post('/', carCtrl.create);
-    router.put('/:id', carCtrl.update);
+    router.put('/', carCtrl.update);
     router.get('/', carCtrl.findAll);
     router.get('/:id', carCtrl.find);
     router.delete('/:id', carCtrl.destroy);

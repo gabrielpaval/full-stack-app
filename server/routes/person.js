@@ -9,6 +9,8 @@ module.exports = app => {
     router.get('/', personCtrl.findAll);
     router.get('/:id', personCtrl.find);
     router.delete('/:id', personCtrl.destroy);
+    router.post('/:id/createCar',personCtrl.createCar);
+    router.delete('/:id/removeCar', personCtrl.removeCar)
   
     return router;
   };

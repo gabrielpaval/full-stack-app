@@ -7,6 +7,7 @@ import axios from 'axios';
 import { ToastrService } from 'ngx-toastr';
 import { SCROLL_TOP, SET_HEIGHT } from 'src/app/utils/utils-table';
 import { ConfirmDialogComponent } from '../confirm-dialog/confirm-dialog.component';
+import { Person } from 'src/app/interface/person';
 
 @Component({
   selector: 'app-persons',
@@ -15,7 +16,7 @@ import { ConfirmDialogComponent } from '../confirm-dialog/confirm-dialog.compone
 })
 export class PersonsComponent implements OnInit {
   faPlus = faPlus;
-  persons: any = [];
+  persons: Person[]= [];
   showBackTop: string = '';
   limit: number = 70;
   faChevronUp = faChevronUp;
@@ -30,7 +31,7 @@ export class PersonsComponent implements OnInit {
 
   loadData = (): void =>{
     this._spinner.show();
-    axios.get('api/persons').then(({data})=>{
+    axios.get('api/persons').then(({ data })=>{
       this.persons = data;
       this._spinner.hide();
     }).catch(()=> this.toastr.error('Eroare la preluarea informatiilor!'));
