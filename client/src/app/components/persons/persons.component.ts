@@ -14,7 +14,9 @@ import { Person } from 'src/app/interface/person';
   templateUrl: './persons.component.html',
   styleUrls: ['./persons.component.scss']
 })
+
 export class PersonsComponent implements OnInit {
+
   faPlus = faPlus;
   persons: Person[]= [];
   showBackTop: string = '';
@@ -23,12 +25,18 @@ export class PersonsComponent implements OnInit {
   faEdit = faEdit;
   faTrashAlt = faTrashAlt;
   
-  constructor(private _modal: NgbModal, private _spinner: NgxSpinnerService, private toastr: ToastrService) { }
+  // Constructor with injected services
+  constructor(
+    private _modal: NgbModal, 
+    private _spinner: NgxSpinnerService, 
+    private toastr: ToastrService
+    ) { }
 
   ngOnInit(): void {
     this.loadData();
   }
 
+  // Method to load person data from the API
   loadData = (): void =>{
     this._spinner.show();
     axios.get('api/persons').then(({ data })=>{
@@ -37,6 +45,7 @@ export class PersonsComponent implements OnInit {
     }).catch(()=> this.toastr.error('Eroare la preluarea informatiilor!'));
   }
 
+  // Method to open the add/edit person modal
   addEdit = (person_id?:number) : void =>{
     const modalRef = this._modal.open(PersonModalComponent, {size: 'lg', keyboard: false, backdrop: "static"});
     modalRef.componentInstance.person_id = person_id;
@@ -62,6 +71,7 @@ export class PersonsComponent implements OnInit {
     this.limit = 70;
   }
 
+  // Method to open the delete confirmation modal and delete a person
   delete = (person: any): void =>{
     const modalRef = this._modal.open(ConfirmDialogComponent, {size: 'lg', keyboard: false, backdrop: "static"});
     modalRef.componentInstance.title = `Ștergere persoană`;

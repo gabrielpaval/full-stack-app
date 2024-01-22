@@ -8,6 +8,7 @@ module.exports = db =>{
                 res.send( {success: true, id: person.id});
             }).catch(() => res.status(401));
         },
+
         update: (req, res) => {
             db.models.Persons.update(req.body, { where: { id: req.body.id } }).then(() => {
                 res.send({ success: true })
@@ -41,13 +42,13 @@ module.exports = db =>{
             }).catch(() => res.status(401));
         },
       
-          destroy: (req, res) => {
+        destroy: (req, res) => {
             db.query(`DELETE FROM "Persons" WHERE id = ${req.params.id}`, { type: db.QueryTypes.DELETE }).then(() => {
                 res.send({ success: true });
               }).catch(() => res.status(401));
-          },
+        },
 
-          createCar: (req, res) => {
+        createCar: (req, res) => {
             db.models.Junction.findOne({
               where: {person_id: req.params.id, car_id : req.body.car_id}
             }).then((exists) =>{
@@ -58,12 +59,12 @@ module.exports = db =>{
                 res.send({success: true})
               }).catch(() => res.status(401));
             });
-          },
+        },
 
-          removeCar: (req, res) => {
+        removeCar: (req, res) => {
             db.query(`DELETE FROM "Junction" WHERE person_id = ${req.params.id} AND car_id = ${req.body.car_id}`, { type: db.QueryTypes.DELETE }).then(() => {
               res.send({ success: true });
             }).catch(() => res.status(401));
-          }
-        };
-      };
+        }
+    };
+};

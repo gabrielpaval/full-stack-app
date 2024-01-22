@@ -1,5 +1,6 @@
 import { Car } from "./car";
 
+// Interface to define the structure of a Person object
 export interface Person {
     id?: number,
     first_name: string,

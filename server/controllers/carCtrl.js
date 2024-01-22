@@ -9,6 +9,7 @@ module.exports = db =>{
                 res.send( {success: true, id: car.id});
             }).catch(() => res.status(401));
         },
+        
         update: (req, res) => {
           db.models.Cars.update(req.body, { where: { id: req.body.id } }).then(() => {
             res.send({ success: true })

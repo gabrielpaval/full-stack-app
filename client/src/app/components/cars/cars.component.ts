@@ -14,7 +14,9 @@ import { Car } from 'src/app/interface/car';
   templateUrl: './cars.component.html',
   styleUrls: ['./cars.component.scss']
 })
+
 export class CarsComponent implements OnInit {
+
   faPlus = faPlus;
   cars: Car[] = [];
   showBackTop: string = '';
@@ -23,22 +25,29 @@ export class CarsComponent implements OnInit {
   faEdit = faEdit;
   faTrashAlt = faTrashAlt;
 
-  constructor(private _modal: NgbModal, 
-              private _spinner: NgxSpinnerService, 
-              private toastr: ToastrService) { }
+  // Constructor with injected services
+  constructor(
+    private _modal: NgbModal, 
+    private _spinner: NgxSpinnerService, 
+    private toastr: ToastrService
+    ) { }
 
   ngOnInit(): void {
     this.loadData();
   }
 
+  // Method to load car data from the API
   loadData = (): void =>{
     this._spinner.show();
     axios.get('api/cars').then(({data})=>{
+
       this.cars = data;
       this._spinner.hide();
+
     }).catch(()=> this.toastr.error('Eroare la preluarea mașinilor!'));
   }
 
+  // Method to open the add/edit car modal
   addEdit = (car_id?:number) : void =>{
     const modalRef = this._modal.open(CarModalComponent, {size: '', keyboard: false, backdrop: "static"});
     modalRef.componentInstance.car_id = car_id;
@@ -64,6 +73,7 @@ export class CarsComponent implements OnInit {
     this.limit = 70;
   }
 
+  // Method to open the delete confirmation modal and delete a car
   delete = (car: any): void =>{
     const modalRef = this._modal.open(ConfirmDialogComponent, {size: 'lg', keyboard: false, backdrop: "static"});
     modalRef.componentInstance.title = `Ștergere mașină`;

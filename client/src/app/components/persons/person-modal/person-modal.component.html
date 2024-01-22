@@ -43,7 +43,7 @@
         <div class='col-9'>
             <ng-select [multiple]='true' [items]='cars' [(ngModel)]='modal.car_list'>
                 <ng-template ng-label-tmp let-item='item' let-clear='clear'>
-                    <span class='ng-value-icon' (click)='clear(item)'>×</span>
+                    <span class='ng-value-icon' (click)='clear(item)'>x</span>
                     {{item.brand_name}} {{item.model_name}} ({{item.year}}) ({{item.cilindrical_capacity}}) ({{item.tax}})
                 </ng-template>
                 <ng-template ng-option-tmp let-item='item'>
@@ -52,7 +52,6 @@
             </ng-select>
         </div>
     </div>
-
 </div>
 
 <div class="modal-footer">

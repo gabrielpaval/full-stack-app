@@ -1,3 +1,4 @@
+// Interface to define the structure of a Car object
 export interface Car {
     id?: number,
     brand_name: string,
